@@ -14,12 +14,15 @@ Jazzcash mobile wallet integration for recurring payments in nodejs
 
 ## Steps to retrieve payment token (FOR SANDBOX ACCOUNT)
 
-- First, run html file
+- First, run html file.
 - Enter testing number 03123456789
-- Submit the form
-- After submiting the form you will redirect to the JazzCash sandbox page, where you will enter a random MPIN after entering MPIN it will ask you to enter OTP on the next page after entering OTP you will receive a payment token on jazz response function
+- Submit the form.
+- After submiting the form you will redirect to the JazzCash sandbox page, where you will enter a random MPIN after entering MPIN it will ask you to enter OTP on the next page after entering OTP you will receive a payment token on jazz response function.
 
-- After receiving payment token run the main script to make recurring payments
+- After receiving payment token run the main script to make recurring payments.
+
+## API to make recurring wallet payments
+- https://sandbox.jazzcash.com.pk/ApplicationAPI/API/4.0/purchase/domwallettransactionviatoken
 
 ## Payment Token expiry
 - Token will expire after 12 months
