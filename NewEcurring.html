@@ -1,0 +1,196 @@
+<style>
+    body {
+    background: #fff;
+    }
+    form {
+    margin: 0;
+    padding: 0;
+    }
+    .jsformWrapper {
+    border: 1px solid rgba(196, 21, 28, 0.5);
+    padding: 2rem;
+    width: 600px;
+    margin: 0 auto;
+    border-radius: 2px;
+    margin-top: 2rem;
+    box-shadow: 0 7px 5px #eee;
+    height: 450px;
+    }
+    .jsformWrapper .formFielWrapper label {
+    width: 300px;
+    float: left;
+    }
+    .jsformWrapper .formFielWrapper input {
+    width: 300px;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    float: left;
+    font-family: sans-serif;
+    }
+    .jsformWrapper .formFielWrapper {
+    float: left;
+    margin-bottom: 1rem;
+    }
+    .jsformWrapper button {
+    background: rgba(196, 21, 28, 1);
+    border: none;
+    color: #fff;
+    width: 120px;
+    height: 40px;
+    line-height: 25px;
+    font-size: 16px;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    border-radius: 2px;
+    cursor: pointer;
+    }
+    .hidediv {
+    display: none;
+    }
+    h3 {
+    text-align: center;
+    margin-top: 3rem;
+    color: rgba(196, 21, 28, 1);
+    }
+    _msg {
+    background-color: yellow;
+    font-size: 14px;
+    }
+   </style>
+   <script>
+    window.onload = function () {
+    getDynamicValues();
+    };
+    function getDynamicValues() {
+    let requestID = "ReqId" + Math.floor(Math.random() * 100000000000);
+    document.getElementsByName("pp_RequestID")[0].value = requestID;
+    }
+   </script>
+   <script>
+    function submitForm() {
+    CalculateHash();
+    var IntegritySalt = document.getElementsByName("integritySalt")[0].value;
+    var hash = CryptoJS.HmacSHA256(
+    document.getElementById("hashValuesString").value,
+    IntegritySalt
+    );
+    document.getElementsByName("pp_SecureHash")[0].value = hash + "";
+    console.log("string: " + hashString);
+    console.log(
+    "hash: " + document.getElementsByName("pp_SecureHash")[0].value
+    );
+
+    document.jsform.submit();
+    }
+   </script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
+   <h3>JazzCash HTTP POST Recurring (Page Redirection) Testing</h3>
+   <!-- integrity salt -->
+   <div class="formFielWrapper">
+    <label class="active">integritySalt: </label>
+    <input
+    type="password"
+    name="integritySalt"
+    value="YOUR_INTEGRITY_SALT"
+    placeholder="Enter Integrity Salt"
+    readonly
+    />
+   </div>
+   <!-- Form Start -->
+   <div class="jsformWrapper">
+    <form
+    name="jsform"
+    method="post"
+    action="https://sandbox.jazzcash.com.pk/WalletLinkingPortal/wallet/LinkWallet"
+    >
+    <div class="formFielWrapper">
+    <label class="active">pp_MerchantID: </label>
+    <input
+    type="text"
+    name="pp_MerchantID"
+    value="YOUR_MERCHANT_ID"
+    placeholder="Enter Merchant ID"
+    readonly
+    />
+    </div>
+    <div class="formFielWrapper">
+    <label class="active">pp_Password: </label>
+    <input
+    type="password"
+    name="pp_Password"
+    value="t90zyeba19"
+    placeholder="Enter Password"
+    readonly
+    />
+    </div>
+    <div class="formFielWrapper">
+    <label class="active">pp_MSISDN: </label>
+    <input
+    type="pp_MSISDN"
+    name="pp_MSISDN"
+    placeholder="Enter Mobile Wallet No"
+    />
+    </div>
+    <div class="formFielWrapper">
+    <label class="active">pp_RequestID: </label>
+    <input
+    type="text"
+    name="pp_RequestID"
+    id="pp_RequestID"
+    value=""
+    readonly
+    />
+    </div>
+    <div class="formFielWrapper">
+    <label class="active">pp_ReturnURL: </label>
+    <input
+    type="text"
+    name="pp_ReturnURL"
+    id="pp_ReturnURL"
+    value="http://127.0.01:3000/jazzresponse"
+    placeholder="Enter Return URL"
+    />
+    </div>
+    <div class="formFielWrapper">
+    <label>pp_SecureHash: </label>
+    <input
+    type="text"
+    name="pp_SecureHash"
+    placeholder="Secure Hash"
+    value=""
+    readonly
+    />
+    </div>
+    <button type="button" onclick="submitForm()">Submit</button>
+    </form>
+    <br /><br />
+    <div class="formFielWrapper">
+    <label class="">Hash values string: </label>
+    <input type="text" id="hashValuesString" value="" />
+    <br /><br />
+    </div>
+   </div>
+   <script>
+    function CalculateHash() {
+    var IntegritySalt = document.getElementsByName("integritySalt")[0].value;
+    hashString = "";
+    hashString += IntegritySalt + "&";
+    if (document.getElementsByName("pp_MerchantID")[0].value != "") {
+    hashString += document.getElementsByName("pp_MerchantID")[0].value + "&";
+    }
+    if (document.getElementsByName("pp_MSISDN")[0].value != "") {
+    hashString += document.getElementsByName("pp_MSISDN")[0].value + "&";
+    }
+    if (document.getElementsByName("pp_Password")[0].value != "") {
+    hashString += document.getElementsByName("pp_Password")[0].value + "&";
+    }
+    if (document.getElementsByName("pp_RequestID")[0].value != "") {
+    hashString += document.getElementsByName("pp_RequestID")[0].value + "&";
+    }
+    if (document.getElementsByName("pp_ReturnURL")[0].value != "") {
+    hashString += document.getElementsByName("pp_ReturnURL")[0].value + "&";
+    }
+    hashString = hashString.slice(0, -1);
+    document.getElementById("hashValuesString").value = hashString;
+    }
+   </script>
