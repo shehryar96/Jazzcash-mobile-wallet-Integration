@@ -10,9 +10,9 @@ Jazzcash mobile wallet integration for recurring payments in nodejs
 
 ## After creating account generate credentials
 
-## In the script replace YOUR_MERCHANT_ID, YOUR_PASSWORD, YOUR_INTEGRITY_SALT, YOUR_PAYMENT_TOKEN (you need to create it with using html file)with jazzcash sandbox account.
+In the script replace YOUR_MERCHANT_ID, YOUR_PASSWORD, YOUR_INTEGRITY_SALT, YOUR_PAYMENT_TOKEN (you need to create it with using html file)with jazzcash sandbox account.
 
-## Steps to retrieve payment token (FOR SANDBOX ACCOUNT)
+## Steps to retrieve payment token (FOR SANDBOX/PRODUCTION ACCOUNT)
 
 - First, run html file.
 - Enter testing number 03123456789
