@@ -22,8 +22,10 @@ Jazzcash mobile wallet integration for recurring payments in nodejs
 - After receiving payment token run the main script to make recurring payments.
 
 ## API to make recurring wallet payments
-- https://sandbox.jazzcash.com.pk/ApplicationAPI/API/4.0/purchase/domwallettransactionviatoken
+- SANDBOX https://sandbox.jazzcash.com.pk/ApplicationAPI/API/4.0/purchase/domwallettransactionviatoken
+
+- PRODUCTION https://payments.jazzcash.com.pk/ApplicationAPI/API/4.0/purchase/domwallettransactionviatoken
 
 ## Payment Token expiry
 - Token will expire after 12 months
-- If user MPIN changed after thans token expired, you need to retrieve a token again.
+- If user changed MPIN token expired, you need to retrieve a token again.
